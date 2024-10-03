@@ -1,6 +1,7 @@
 
 # 必要な環境
 - VSCode
+    - 拡張機能　Django Python
 - Git for Windows (Linuxなら普通にgitでもよい)
 - Python（VSCodeのターミナル内でpythonと打てばwindowsストアが出てきてインストールできる）
 
