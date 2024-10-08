@@ -4,6 +4,7 @@
     - 拡張機能　Django Python
 - Git for Windows (Linuxなら普通にgitでもよい)
 - Python（VSCodeのターミナル内でpythonと打てばwindowsストアが出てきてインストールできる）
+- SQLiteBrowzer(https://sqlitebrowser.org/dl/)
 
 ## 実行までの設定
 - `./install.sh`をGitBashのターミナルで実行
