@@ -6,5 +6,6 @@ if [ -d "./venv/bin" ]; then
 else
     source ./venv/Scripts/activate
 fi
+pip install --upgrade pip
 pip install -r requirements.txt
 deactivate
