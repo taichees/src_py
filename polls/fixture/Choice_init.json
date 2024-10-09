@@ -1,0 +1,17 @@
+[
+  {
+    "model": "polls.choice",
+    "pk": 1,
+    "fields": { "question": 1, "choice_text": "aaa", "votes": 0 }
+  },
+  {
+    "model": "polls.choice",
+    "pk": 2,
+    "fields": { "question": 1, "choice_text": "bbb", "votes": 0 }
+  },
+  {
+    "model": "polls.choice",
+    "pk": 3,
+    "fields": { "question": 1, "choice_text": "ccc", "votes": 0 }
+  }
+]

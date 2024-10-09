@@ -1,0 +1,10 @@
+[
+  {
+    "model": "polls.question",
+    "pk": 1,
+    "fields": {
+      "question_text": "testQuestion",
+      "pub_date": "2024-10-08T07:12:02Z"
+    }
+  }
+]

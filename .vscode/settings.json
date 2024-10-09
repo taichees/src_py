@@ -1,0 +1,5 @@
+{
+  "python.testing.unittestEnabled": false,
+  "python.testing.cwd": "${workspaceFolder}/git-work-dir/src",
+  "python.testing.pytestEnabled": true
+}
