@@ -1,5 +1,7 @@
 {
-  "python.testing.unittestEnabled": false,
-  "python.testing.cwd": "${workspaceFolder}/git-work-dir/src",
-  "python.testing.pytestEnabled": true
+    "python.testing.pytestArgs": [
+        "polls"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }
