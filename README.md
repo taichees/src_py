@@ -21,6 +21,8 @@ Superuser created successfully.
 ```
 - デバッグ（▷に虫マークのアイコン）を表示して左上の▷マークをクリック
 - ブラウザで→にアクセス　http://127.0.0.1:8000/polls/
+- データを増やしたいときはブラウザで→にアクセス　http://127.0.0.1:8000/admin/
+ログイン情報は上記
 
 ## modelsを追加したとき
 - `python manage.py makemigrations XXXX`をGitBashのターミナルで実行（XXXXはフォルダ名　例：polls）
