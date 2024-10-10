@@ -22,6 +22,13 @@ class IndexView(generic.ListView):
             "-pub_date"
         )[:5]
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(
+            **kwargs
+        )  # はじめに継承元のメソッドを呼び出す
+        context["title"] = "indexTitle"
+        return context
+
 
 class DetailView(generic.DetailView):
     model = Question
