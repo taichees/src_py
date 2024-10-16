@@ -2,42 +2,9 @@ from django.shortcuts import get_object_or_404, render
 
 # Create your views here.
 from django.http import HttpResponseRedirect
-from .models import Choice, Question
+from ..models import Choice, Question
 from django.urls import reverse
 from django.db.models import F
-from django.views import generic
-from django.utils import timezone
-
-
-class IndexView(generic.ListView):
-    template_name = "polls/index.html"
-    context_object_name = "latest_question_list"
-
-    def get_queryset(self):
-        """
-        Return the last five published questions (not including those set to be
-        published in the future).
-        """
-        return Question.objects.filter(pub_date__lte=timezone.now()).order_by(
-            "-pub_date"
-        )[:5]
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(
-            **kwargs
-        )  # はじめに継承元のメソッドを呼び出す
-        context["title"] = "indexTitle"
-        return context
-
-
-class DetailView(generic.DetailView):
-    model = Question
-    template_name = "polls/detail.html"
-
-
-class ResultsView(generic.DetailView):
-    model = Question
-    template_name = "polls/results.html"
 
 
 def vote(request, question_id):
