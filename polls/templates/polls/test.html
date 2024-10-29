@@ -1,0 +1,239 @@
+{% load django_bootstrap5 %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>掲示板的なものを作ろう</title>
+    {% bootstrap_css %} {% bootstrap_javascript %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #ffffff;
+            background-color: #dcdcdc;
+            border-radius: 5px;
+            margin: 0 5px;
+            text-align: center;
+        }
+
+        .tab.active {
+            background-color: #1e90ff;
+            color: #ffffff;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 0 10px;
+        }
+
+        .label {
+            font-size: 14px;
+            color: #333333;
+            width: 120px;
+            text-align: left;
+            margin-right: 50px;
+        }
+
+        .value {
+            font-size: 14px;
+            color: #333333;
+            flex: 1;
+            text-align: left;
+        }
+
+        .button {
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #333333;
+            background-color: #adff2f;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #7fff00;
+        }
+
+        .info-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal {
+            display: none; /* 初期状態は非表示 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .modal p {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .modal-form {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+
+        .modal-form label {
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .modal-form input {
+            padding: 5px;
+            font-size: 14px;
+            width: 150px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* モーダルのボタンスタイル */
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .modal-button-back {
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #333333;
+            background-color: #ffffe0;
+            border: 1px solid #cccc99;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-button-back:hover {
+            background-color: #f0e68c;
+        }
+
+        .modal-button-submit {
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #ffffff;
+            background-color: #333333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-button-submit:hover {
+            background-color: #555555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">掲示板的なものを作ろう</div>
+
+        <div class="tabs">
+            <div class="tab">HOME</div>
+            <div class="tab active">ユーザー情報</div>
+        </div>
+
+        <div class="info">
+            <div class="label">ユーザーID</div>
+            <div class="value">12345678</div>
+        </div>
+
+        <div class="info">
+            <div class="label">現在のユーザー名</div>
+            <div class="value">デロイト太郎</div>
+            <div class="info-buttons">
+                <button class="button" onclick="openModal('ユーザー名の変更')">変更</button>
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">現在のパスワード</div>
+            <div class="value">password1111</div>
+            <div class="info-buttons">
+                <button class="button" onclick="openModal('パスワードの変更')">変更</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <p>ユーザー名の変更</p>
+            <div class="modal-form">
+                <label for="modalInput">新しいユーザー名</label>
+                <input type="text" id="modalInput">
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-button-back" onclick="closeModal()">戻る</button>
+                <button class="modal-button-submit" onclick="submitChange()">変更する</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(title) {
+            document.getElementById("myModal").style.display = "flex";
+            document.querySelector(".modal-content p").innerText = title;
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function submitChange() {
+            const newUsername = document.getElementById("modalInput").value;
+            // サーバーに送信する処理をここに追加
+            closeModal();
+        }
+    </script>
+</body>
+</html>
